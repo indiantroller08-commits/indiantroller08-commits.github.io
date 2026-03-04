@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnderSenpai | Minecraft Creator</title>
+
+<link rel="icon" type="image/png" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Orbitron',sans-serif;
+cursor:none;
+}
+
+body{
+background:#0f0c29;
+color:white;
+overflow-x:hidden;
+}
+
+/* LOADER */
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+flex-direction:column;
+}
+
+.loader-text{
+font-size:24px;
+animation:pulse 1s infinite alternate;
+}
+
+@keyframes pulse{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+
+/* PARTICLE BACKGROUND */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* HEADER */
+header{
+padding:100px 20px 40px;
+text-align:center;
+}
+
+.logo-img{
+width:140px;
+border-radius:50%;
+box-shadow:0 0 40px #a020f0;
+animation:float 4s ease-in-out infinite;
+transform-style:preserve-3d;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0) rotateY(0deg);}
+50%{transform:translateY(-20px) rotateY(180deg);}
+}
+
+h1{
+font-size:42px;
+margin-top:20px;
+text-shadow:0 0 30px #ff00ff;
+}
+
+.tagline{
+margin-top:10px;
+opacity:0.8;
+}
+
+/* LINKS */
+.links{
+margin-top:50px;
+display:flex;
+flex-direction:column;
+gap:25px;
+align-items:center;
+}
+
+.link-btn{
+position:relative;
+text-decoration:none;
+color:white;
+padding:15px 40px;
+width:280px;
+border-radius:50px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.2);
+overflow:hidden;
+transition:0.4s;
+}
+
+.link-btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 30px #a020f0,0 0 60px #ff00ff;
+background:rgba(255,255,255,0.2);
+}
+
+/* LATEST VIDEO */
+.latest-video{
+margin-top:100px;
+text-align:center;
+}
+
+.latest-video h2{
+margin-bottom:30px;
+font-size:28px;
+text-shadow:0 0 20px #ff00ff;
+}
+
+.video-container{
+width:90%;
+max-width:900px;
+margin:auto;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 0 40px #a020f0;
+transition:0.4s;
+}
+
+.video-container:hover{
+transform:scale(1.03);
+box-shadow:0 0 60px #ff00ff;
+}
+
+.video-container iframe{
+width:100%;
+height:500px;
+}
+
+/* FOOTER */
+footer{
+margin-top:100px;
+padding:20px;
+opacity:0.6;
+}
+
+/* CUSTOM CURSOR */
+.cursor{
+width:20px;
+height:20px;
+border:2px solid #ff00ff;
+border-radius:50%;
+position:fixed;
+pointer-events:none;
+transform:translate(-50%,-50%);
+transition:0.1s;
+box-shadow:0 0 20px #ff00ff;
+z-index:999;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.video-container iframe{
+height:250px;
+}
+h1{font-size:28px;}
+.logo-img{width:100px;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="loader">
+<div class="loader-text">Loading Ender Dimension...</div>
+</div>
+
+<canvas id="particles"></canvas>
+<div class="cursor"></div>
+
+<header>
+<img src="logo.png" class="logo-img">
+<h1>EnderSenpai</h1>
+<p class="tagline">A Minecraft Content Creator 🎮</p>
+</header>
+
+<section class="links">
+<a class="link-btn" href="https://youtube.com/@endersenpaiyt?si=y3EKiYROkyuDiIsl" target="_blank">🎥 YouTube</a>
+<a class="link-btn" href="https://www.instagram.com/endersenpaiyt/" target="_blank">📸 Instagram</a>
+<a class="link-btn" href="https://discord.gg/FxbUtNktcu" target="_blank">💬 Discord Server</a>
+<div class="link-btn">👤 Discord: endersenpai4u</div>
+</section>
+
+<section class="latest-video">
+<h2>🔥 Latest YouTube Upload</h2>
+<div class="video-container">
+<iframe 
+src="https://www.youtube.com/embed?listType=user_uploads&list=UCyK7rQh3V8H2Ue0QeZ0kX6A"
+frameborder="0"
+allowfullscreen>
+</iframe>
+</div>
+</section>
+
+<footer>
+© 2026 EnderSenpai | All Rights Reserved
+</footer>
+
+<script>
+
+/* LOADER */
+window.addEventListener("load",()=>{
+document.getElementById("loader").style.display="none";
+});
+
+/* CUSTOM CURSOR */
+const cursor=document.querySelector(".cursor");
+document.addEventListener("mousemove",e=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
+
+/* PARTICLES */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<100;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+d:Math.random()*1
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="rgba(255,0,255,0.8)";
+ctx.beginPath();
+for(let i=0;i<particles.length;i++){
+let p=particles[i];
+ctx.moveTo(p.x,p.y);
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
+}
+ctx.fill();
+update();
+}
+
+function update(){
+for(let i=0;i<particles.length;i++){
+particles[i].y+=particles[i].d;
+if(particles[i].y>canvas.height){
+particles[i].y=0;
+particles[i].x=Math.random()*canvas.width;
+}
+}
+}
+
+setInterval(draw,33);
+
+</script>
+
+</body>
+</html>
