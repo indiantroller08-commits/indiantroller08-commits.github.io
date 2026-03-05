@@ -6,7 +6,6 @@
 <title>EnderSenpai | Minecraft SMP Creator</title>
 
 <link rel="icon" type="image/png" href="logo.png">
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -33,7 +32,7 @@ overflow-x:hidden;
 100%{background-position:0% 50%}
 }
 
-/* PARTICLE CANVAS */
+/* PARTICLES */
 canvas{
 position:fixed;
 top:0;
@@ -52,7 +51,6 @@ backdrop-filter:blur(10px);
 position:sticky;
 top:0;
 z-index:10;
-animation:fadeDown 1s ease;
 }
 
 nav img{
@@ -65,16 +63,10 @@ nav h2{
 font-family:'Orbitron',sans-serif;
 }
 
-@keyframes fadeDown{
-from{opacity:0;transform:translateY(-30px);}
-to{opacity:1;transform:translateY(0);}
-}
-
 /* HERO */
 .hero{
 text-align:center;
 padding:100px 20px;
-animation:fadeUp 1.2s ease;
 }
 
 .hero h1{
@@ -91,43 +83,23 @@ max-width:700px;
 margin:auto;
 }
 
-@keyframes fadeUp{
-from{opacity:0;transform:translateY(40px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-/* ABOUT */
-.about{
-max-width:900px;
+/* SECTIONS */
+section{
 margin:80px auto;
 padding:50px;
+max-width:1000px;
 background:rgba(255,255,255,0.08);
 border-radius:25px;
 box-shadow:0 0 40px rgba(160,32,240,0.3);
 backdrop-filter:blur(10px);
-animation:fadeUp 1.5s ease;
-}
-
-.about h2{
-font-family:'Orbitron',sans-serif;
-margin-bottom:25px;
-text-align:center;
-}
-
-.about p{
-line-height:1.9;
-opacity:0.9;
-text-align:center;
 }
 
 /* LINKS */
 .links{
-margin-top:60px;
 display:flex;
 justify-content:center;
 flex-wrap:wrap;
 gap:25px;
-animation:fadeUp 1.8s ease;
 }
 
 .link-btn{
@@ -138,8 +110,6 @@ border-radius:40px;
 background:rgba(255,255,255,0.1);
 border:1px solid rgba(255,255,255,0.2);
 transition:0.4s;
-position:relative;
-overflow:hidden;
 }
 
 .link-btn:hover{
@@ -149,17 +119,6 @@ box-shadow:0 15px 40px rgba(160,32,240,0.6);
 }
 
 /* VIDEO */
-.video-section{
-margin:100px auto;
-text-align:center;
-animation:fadeUp 2s ease;
-}
-
-.video-section h2{
-font-family:'Orbitron',sans-serif;
-margin-bottom:35px;
-}
-
 .video-container{
 width:90%;
 max-width:900px;
@@ -180,20 +139,67 @@ width:100%;
 height:500px;
 }
 
+/* LIVE STATS */
+.embed-container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+margin-top:30px;
+}
+
+.embed-card{
+width:450px;
+}
+
+.embed-card iframe{
+width:100%;
+height:350px;
+border-radius:15px;
+}
+
+/* PROGRESS BAR */
+.goal-container{
+margin-top:40px;
+text-align:center;
+}
+
+.progress-bar{
+width:100%;
+background:rgba(255,255,255,0.1);
+border-radius:20px;
+overflow:hidden;
+height:30px;
+}
+
+.progress{
+height:30px;
+width:0%;
+background:linear-gradient(90deg,#ff00ff,#a020f0);
+text-align:center;
+line-height:30px;
+font-weight:bold;
+animation:loadProgress 3s forwards;
+}
+
+@keyframes loadProgress{
+from{width:0%;}
+to{width:90%;}
+}
+
 /* FOOTER */
 footer{
 margin:80px 0 20px;
 text-align:center;
 opacity:0.6;
 font-size:14px;
-animation:fadeUp 2.2s ease;
 }
 
-/* RESPONSIVE */
 @media(max-width:768px){
 .hero h1{font-size:30px;}
 .video-container iframe{height:250px;}
-.about{padding:30px;}
+.embed-card{width:100%;}
+.embed-card iframe{height:250px;}
 }
 
 </style>
@@ -217,27 +223,24 @@ Join me as we dominate the End Dimension.
 </p>
 </section>
 
-<section class="about">
-<h2>About Me</h2>
-<p>
+<section>
+<h2 style="text-align:center;font-family:Orbitron;">About Me</h2>
+<p style="text-align:center;margin-top:20px;line-height:1.9;">
 Hey, I’m <strong>EnderSenpai</strong> — a dedicated Minecraft SMP content creator.
-My videos focus on strategic survival gameplay, epic PvP moments,
-and immersive storytelling inside the Minecraft universe.
-
-I aim to build a strong gaming community where creativity,
-competition, and entertainment come together.
+I focus on strategic survival gameplay, epic PvP moments,
+and immersive storytelling.
 </p>
 </section>
 
 <section class="links">
-<a class="link-btn" href="https://youtube.com/@endersenpaiyt?si=y3EKiYROkyuDiIsl" target="_blank">🎥 YouTube</a>
+<a class="link-btn" href="https://youtube.com/@endersenpaiyt" target="_blank">🎥 YouTube</a>
 <a class="link-btn" href="https://www.instagram.com/endersenpaiyt/" target="_blank">📸 Instagram</a>
 <a class="link-btn" href="https://discord.gg/FxbUtNktcu" target="_blank">💬 Discord Server</a>
 <a class="link-btn">👤 Discord: endersenpai4u</a>
 </section>
 
-<section class="video-section">
-<h2>🔥 Latest Upload</h2>
+<section>
+<h2 style="text-align:center;font-family:Orbitron;">🔥 Latest Upload</h2>
 <div class="video-container">
 <iframe 
 src="https://www.youtube.com/embed/QFWS-uvo3kc"
@@ -245,6 +248,32 @@ frameborder="0"
 allowfullscreen>
 </iframe>
 </div>
+</section>
+
+<section>
+<h2 style="text-align:center;font-family:Orbitron;">📊 Live Stats</h2>
+
+<div class="embed-container">
+
+<div class="embed-card">
+<h3>YouTube Live Subscribers</h3>
+<iframe src="https://livecounts.io/youtube-live-subscriber-counter/@endersenpaiyt"></iframe>
+</div>
+
+<div class="embed-card">
+<h3>Minecraft Server Status</h3>
+<iframe src="https://api.mcsrvstat.us/2/titan.dripnodes.site:25575/embed"></iframe>
+</div>
+
+</div>
+
+<div class="goal-container">
+<h3>🎯 Goal: 5K Subscribers</h3>
+<div class="progress-bar">
+<div class="progress">4.5K / 5K</div>
+</div>
+</div>
+
 </section>
 
 <footer>
